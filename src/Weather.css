@@ -28,6 +28,7 @@
 .Weather img {
   height: 64px;
 }
+
 .Weather .temperature {
   font-weight: 400;
   color: rgb(33, 33, 33);

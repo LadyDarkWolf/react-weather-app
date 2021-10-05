@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./Weather.css";
 import axios from "axios";
+import FriendlyDate from "./FriendlyDate";
+import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -12,7 +13,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
       precipitation: 0,
-      date: "Monday 19:47",
+      date: new Date(response.data.dt * 1000),
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       ready: true,
     });
@@ -41,7 +42,9 @@ export default function Weather(props) {
         </form>
         <h1>{weatherData.city}</h1>
         <ul>
-          <li>{weatherData.date}</li>
+          <li>
+            <FriendlyDate date={weatherData.date} />
+          </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">

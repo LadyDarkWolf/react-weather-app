@@ -9,7 +9,10 @@ export default function WeatherInfo(props) {
       <h1>{props.data.city}</h1>
       <ul>
         <li>
-          <FriendlyDate date={props.data.date} />
+          <FriendlyDate
+            date={props.data.date}
+            components={["day", "hours-minutes"]}
+          />
         </li>
         <li className="text-capitalize">{props.data.description}</li>
       </ul>

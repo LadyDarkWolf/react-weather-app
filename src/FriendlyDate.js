@@ -10,6 +10,7 @@ export default function FriendlyDate(props) {
     "Friday",
     "Saturday",
   ];
+  let components = props.components;
   let day = dayNames[props.date.getDay()];
   let hours = props.date.getHours();
   let minutes = props.date.getMinutes();
@@ -19,9 +20,21 @@ export default function FriendlyDate(props) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  return (
-    <span>
-      {day} {hours}:{minutes}
-    </span>
-  );
+  let output = "";
+  components.map(function (component, index) {
+    if (output !== "") {
+      output += " ";
+    }
+    if (component === "day") {
+      output += day;
+    } else if (component === "short-day") {
+      output += day.substring(0, 3);
+    } else if (component === "hours-minutes") {
+      output += `${hours}:${minutes}`;
+    } else {
+      output += "X";
+    }
+    return output;
+  });
+  return <span>{output}</span>;
 }

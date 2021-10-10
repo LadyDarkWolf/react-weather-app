@@ -16,8 +16,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
       precipitation: 0,
-      date: new Date((response.data.dt + response.data.timezone) * 1000),
-      timezone: response.data.timezone,
+      date: new Date(response.data.dt * 1000),
       icon: response.data.weather[0].icon,
       ready: true,
     });
@@ -60,10 +59,7 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weatherData} />
-        <WeatherForecast
-          coordinates={weatherData.coordinates}
-          timezone={weatherData.timezone}
-        />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
